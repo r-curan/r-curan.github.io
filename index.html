@@ -1,157 +1,174 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  
-  <title>Raj Karan Sah — Building in the Virtual World</title>
-  <meta name="description" content="Raj Karan Sah from Kathmandu. Exploring code, simulations, and digital experiences.">
-  
-  <!-- Open Graph / Social sharing -->
-  <meta property="og:title" content="Raj Karan Sah">
-  <meta property="og:description" content="Virtual world inside the virtual simulation. Coder & explorer.">
-  <meta property="og:image" content="IMG_1409.heic"> <!-- Optional: uses your photo for social previews -->
-  <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary_large_image">
 
-  <!-- Favicon (add your own later) -->
-  <link rel="icon" href="/favicon.ico">
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>Raj Karan Sah</title>
 
-  <style>
-    :root {
-      --bg: #ffffff;
-      --text: #0f172a;
-      --text-light: #334155;
-      --gray: #64748b;
-      --primary: #6366f1;
-      --primary-dark: #4f46e5;
-      --border: #e2e8f0;
-    }
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #0f172a;
-        --text: #f1f5f9;
-        --text-light: #cbd5e1;
-        --gray: #94a3b8;
-        --border: #334155;
-      }
-    }
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body {
-      font-family: 'Inter', system-ui, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      min-height: 100dvh;
-    }
-    .container { max-width: 980px; margin: 0 auto; padding: 0 1.5rem; }
-    header { padding: 5rem 0 4rem; text-align: center; }
-    h1 { font-size: clamp(2.8rem, 8vw, 4.8rem); font-weight: 700; letter-spacing: -0.04em; margin-bottom: 0.8rem; }
-    .tagline { font-size: 1.38rem; color: var(--text-light); max-width: 580px; margin: 0 auto 2.5rem; }
-    .social-links { display: flex; justify-content: center; gap: 1.8rem; flex-wrap: wrap; margin: 1.5rem 0 3rem; }
-    .social-links a { color: var(--gray); font-size: 1.1rem; text-decoration: none; transition: color 0.2s; }
-    .social-links a:hover { color: var(--primary); }
-    .buttons { display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap; }
-    .btn { display: inline-block; padding: 0.9rem 1.8rem; border-radius: 9999px; font-weight: 500; text-decoration: none; transition: all 0.2s; border: 1px solid transparent; }
-    .btn-primary { background: var(--primary); color: white; }
-    .btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); }
-    .btn-outline { border-color: var(--border); color: var(--text); }
-    .btn-outline:hover { background: rgba(99, 102, 241, 0.07); border-color: var(--primary); }
-    section { padding: 6rem 0; }
-    h2 { font-size: 2.4rem; margin-bottom: 2.5rem; text-align: center; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
-    .card { padding: 1.8rem; border: 1px solid var(--border); border-radius: 12px; background: rgba(255,255,255,0.4); backdrop-filter: blur(8px); transition: transform 0.25s, box-shadow 0.25s; }
-    @media (prefers-color-scheme: dark) { .card { background: rgba(15, 23, 42, 0.6); } }
-    .card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px -12px rgba(0,0,0,0.12); }
-    @media (prefers-reduced-motion: reduce) { * { transition: none !important; transform: none !important; } }
-  </style>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Inter;
+}
+
+body{
+background: linear-gradient(135deg,#0f172a,#1e293b);
+color:white;
+min-height:100vh;
+text-align:center;
+}
+
+/* Container */
+.container{
+max-width:900px;
+margin:auto;
+padding:80px 20px;
+}
+
+/* Profile Image */
+
+.profile{
+width:180px;
+height:180px;
+border-radius:50%;
+object-fit:cover;
+border:4px solid #6366f1;
+margin-bottom:20px;
+transition:.4s;
+}
+
+.profile:hover{
+transform:scale(1.05) rotate(2deg);
+}
+
+/* Name */
+
+h1{
+font-size:3rem;
+margin-bottom:15px;
+}
+
+/* Bio */
+
+.bio{
+color:#cbd5e1;
+max-width:600px;
+margin:auto;
+line-height:1.6;
+}
+
+/* Buttons */
+
+.buttons{
+margin-top:30px;
+}
+
+.btn{
+display:inline-block;
+padding:12px 28px;
+margin:10px;
+border-radius:999px;
+text-decoration:none;
+color:white;
+font-weight:600;
+transition:.3s;
+}
+
+.primary{
+background:#6366f1;
+}
+
+.primary:hover{
+background:#4f46e5;
+transform:translateY(-3px);
+}
+
+.outline{
+border:1px solid #94a3b8;
+}
+
+.outline:hover{
+background:rgba(255,255,255,0.1);
+}
+
+/* Social */
+
+.social{
+margin-top:40px;
+}
+
+.social a{
+margin:0 15px;
+color:#cbd5e1;
+text-decoration:none;
+font-weight:500;
+}
+
+.social a:hover{
+color:#6366f1;
+}
+
+footer{
+margin-top:80px;
+padding:30px;
+color:#94a3b8;
+border-top:1px solid rgba(255,255,255,0.1);
+}
+
+</style>
+
 </head>
+
 <body>
 
-  <div class="container">
+<div class="container">
 
-    <header>
-      <h1>Raj Karan Sah</h1>
-      
-      <img 
-        src="IMG_1409.heic" 
-        alt="Raj Karan Sah" 
-        style="
-          width: 180px; 
-          height: 180px; 
-          border-radius: 50%; 
-          object-fit: cover; 
-          display: block; 
-          margin: 2rem auto 1.5rem; 
-          box-shadow: 0 8px 20px rgba(0,0,0,0.15); 
-          transition: transform 0.3s ease;
-        "
-        onmouseover="this.style.transform='scale(1.05)'"
-        onmouseout="this.style.transform='scale(1)'"
-      >
+<img src="profile.jpg" class="profile">
 
-      <p class="tagline">
-        Computer Engineering Student.<br>
-        Coder • Explorer • From Kathmandu
-      </p>
+<h1>Raj Karan Sah</h1>
 
-      <div class="social-links">
-        <!-- <a href="https://github.com/Cheif-Paradox" target="_blank" rel="noopener">GitHub</a> -->
-        <a href="https://twitter.com/Sandip76819" target="_blank" rel="noopener">X / Twitter</a>
-        <a href="https://www.linkedin.com/in/sandip-sharma-0a7b98324" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="rajkaransah274@gmail.com">Email</a>
-      </div>
+<p class="bio">
+Computer Engineering Student • Web Development Enthusiast<br>
+Passionate about building simple and beautiful digital experiences.
+</p>
 
-      <div class="buttons">
-        <a href="#projects" class="btn btn-primary">See my work</a>
-        <a href="#contact" class="btn btn-outline">Get in touch</a>
-      </div>
-    </header>
+<div class="buttons">
+<a href="#projects" class="btn primary">View Projects</a>
+<a href="mailto:rajkaransah274@gmail.com" class="btn outline">Contact Me</a>
+</div>
 
-    <!-- Rest of your sections remain the same -->
-    <section id="about">
-      <h2>About Me</h2>
-      <p style="max-width: 65ch; margin: 0 auto; font-size: 1.18rem; text-align: center;">
-        Passionate about code, simulations, and pushing the boundaries of what's possible in the digital realm.<br>
-        Always experimenting, learning, and building.
-      </p>
-    </section>
+<div class="social">
 
-    <section id="projects">
-      <h2>Selected Projects</h2>
-      <div class="grid">
-        <div class="card">
-          <h3 style="font-size: 1.4rem; margin-bottom: 0.8rem;">Project One</h3>
-          <p style="color: var(--gray);">Coming soon — drop a line if you'd like to collaborate!</p>
-        </div>
-        <div class="card">
-          <h3 style="font-size: 1.4rem; margin-bottom: 0.8rem;">Project Two</h3>
-          <p style="color: var(--gray);">More experiments in progress...</p>
-        </div>
-      </div>
-    </section>
+<a href="https://github.com/r-curan" target="_blank">GitHub</a>
 
-    <section id="contact" style="text-align: center; padding-bottom: 8rem;">
-      <h2>Let's connect</h2>
-      <p style="font-size: 1.25rem; margin: 1.5rem 0 2.5rem;">
-        Open to chats, ideas, collabs, or just saying hi.
-      </p>
-      <a href="mailto:rajkaransah274@gmail.com?subject=Hey%20Sandip" class="btn btn-primary" style="font-size: 1.2rem; padding: 1.1rem 2.4rem;">
-        Say Hello →
-      </a>
-    </section>
+<a href="https://www.linkedin.com/in/raj-karan-sah-305442310/" target="_blank">LinkedIn</a>
 
-  </div>
+<a href="mailto:rajkaransah274@gmail.com">Email</a>
 
-  <footer style="text-align: center; padding: 3rem 0; color: var(--gray); font-size: 0.95rem; border-top: 1px solid var(--border);">
-    <p>© 2026 Raj Karan Sah • Kathmandu</p>
-  </footer>
+</div>
+
+<section id="projects" style="margin-top:100px">
+
+<h2>My Projects</h2>
+
+<div style="margin-top:40px; color:#cbd5e1;">
+Project work coming soon 🚀
+</div>
+
+</section>
+
+<footer>
+© 2026 Raj Karan Sah
+</footer>
+
+</div>
 
 </body>
 </html>
