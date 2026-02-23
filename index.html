@@ -19,14 +19,15 @@ font-family:Inter;
 }
 
 body{
-background: linear-gradient(135deg,#0f172a,#020617);
+background: linear-gradient(135deg,#020617,#0f172a);
 color:white;
 text-align:center;
-line-height:1.6;
 }
 
+/* Container */
+
 .container{
-max-width:900px;
+max-width:1000px;
 margin:auto;
 padding:80px 20px;
 }
@@ -34,8 +35,8 @@ padding:80px 20px;
 /* Profile */
 
 .profile{
-width:180px;
-height:180px;
+width:170px;
+height:170px;
 border-radius:50%;
 object-fit:cover;
 border:4px solid #6366f1;
@@ -47,18 +48,24 @@ transition:.4s;
 transform:scale(1.05);
 }
 
-/* Name */
+/* Text */
 
 h1{
 font-size:3rem;
 margin-bottom:15px;
 }
 
+.greeting{
+color:#cbd5e1;
+font-size:1.3rem;
+margin-bottom:25px;
+}
+
 /* Buttons */
 
 .btn{
 display:inline-block;
-padding:12px 26px;
+padding:12px 28px;
 border-radius:999px;
 text-decoration:none;
 color:white;
@@ -84,34 +91,42 @@ border:1px solid #94a3b8;
 background:rgba(255,255,255,0.1);
 }
 
+/* Sections */
+
+section{
+margin-top:120px;
+}
+
+h2{
+font-size:2.4rem;
+margin-bottom:50px;
+}
+
 /* Cards */
-
-.card{
-padding:25px;
-border-radius:18px;
-background:rgba(255,255,255,0.05);
-border:1px solid rgba(255,255,255,0.1);
-backdrop-filter:blur(10px);
-transition:.3s;
-}
-
-.card:hover{
-transform:translateY(-8px);
-}
-
-/* Grid */
 
 .grid{
 display:grid;
 gap:25px;
-margin-top:40px;
+}
+
+.card{
+padding:30px;
+border-radius:20px;
+background:rgba(255,255,255,0.05);
+border:1px solid rgba(255,255,255,0.1);
+backdrop-filter:blur(12px);
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-10px);
 }
 
 /* Footer */
 
 footer{
 margin-top:100px;
-padding:30px;
+padding:40px;
 border-top:1px solid rgba(255,255,255,0.1);
 color:#94a3b8;
 }
@@ -124,20 +139,18 @@ color:#94a3b8;
 
 <div class="container">
 
-<!-- Profile Section -->
-
 <img src="profile.jpg" class="profile">
 
 <h1>Raj Karan Sah</h1>
 
-<h2 id="greeting"></h2>
+<p class="greeting" id="visitorGreeting"></p>
 
 <p style="color:#cbd5e1; max-width:600px; margin:auto;">
-Computer Engineering Student • Web Development Enthusiast<br>
-Building simple and beautiful web experiences.
+Computer Engineering Student • Web Developer<br>
+Building simple, modern digital experiences.
 </p>
 
-<div style="margin-top:25px;">
+<div style="margin-top:30px;">
 
 <a href="https://github.com/r-curan" class="btn primary" target="_blank">
 GitHub
@@ -148,14 +161,14 @@ LinkedIn
 </a>
 
 <a href="mailto:rajkaransah274@gmail.com" class="btn outline">
-Email Me
+Contact
 </a>
 
 </div>
 
-<!-- Education Section -->
+<!-- EDUCATION -->
 
-<section style="margin-top:120px;">
+<section>
 
 <h2>Education</h2>
 
@@ -164,16 +177,16 @@ Email Me
 <a href="https://kec.edu.np/" target="_blank" style="text-decoration:none;color:white;">
 <div class="card">
 <h3>🎓 Kantipur Engineering College</h3>
-<p style="color:#cbd5e1;margin-top:10px;">
-Currently Studying Engineering
+<p style="color:#cbd5e1;margin-top:12px;">
+Currently studying Engineering
 </p>
 </div>
 </a>
 
 <a href="https://davcollege.edu.np/" target="_blank" style="text-decoration:none;color:white;">
 <div class="card">
-<h3>🏫 Dayanand Anglo-Vedic College (D.A.V)</h3>
-<p style="color:#cbd5e1;margin-top:10px;">
+<h3>🏫 Dayanand Anglo-Vedic College</h3>
+<p style="color:#cbd5e1;margin-top:12px;">
 Completed +2 Education
 </p>
 </div>
@@ -183,19 +196,29 @@ Completed +2 Education
 
 </section>
 
-<!-- Contact -->
+<!-- PROJECTS -->
 
-<section style="margin-top:120px;">
+<section>
 
-<h2>Contact Me</h2>
+<h2>Projects</h2>
 
-<p style="color:#cbd5e1; margin:25px auto; max-width:600px;">
-Feel free to connect for projects or ideas.
+<div class="grid">
+
+<div class="card">
+<h3>Portfolio Website</h3>
+<p style="color:#cbd5e1;margin-top:12px;">
+Personal portfolio website development.
 </p>
+</div>
 
-<a href="mailto:rajkaransah274@gmail.com" class="btn primary">
-Send Message 🚀
-</a>
+<div class="card">
+<h3>More Projects Coming Soon 🚀</h3>
+<p style="color:#cbd5e1;margin-top:12px;">
+Currently working on new ideas.
+</p>
+</div>
+
+</div>
 
 </section>
 
@@ -207,30 +230,31 @@ Send Message 🚀
 
 <script>
 
-/* Dynamic Greeting */
+/* Visitor Greeting */
 
-function greeting(){
+function visitorGreeting(){
 
 let hour = new Date().getHours();
-let text = "";
+let greeting = "";
 
 if(hour < 12){
-text = "🌅 Good Morning";
+greeting = "🌅 Good Morning, Welcome to my profile!";
 }
 else if(hour < 18){
-text = "☀️ Good Afternoon";
+greeting = "☀️ Good Afternoon, Welcome to my profile!";
 }
 else if(hour < 21){
-text = "🌇 Good Evening";
+greeting = "🌇 Good Evening, Welcome to my profile!";
 }
 else{
-text = "🌙 Good Night";
+greeting = "🌙 Good Night, Thanks for visiting!";
 }
 
-document.getElementById("greeting").innerText = text + " Raj Karan Sah!";
+document.getElementById("visitorGreeting").innerText = greeting;
+
 }
 
-greeting();
+visitorGreeting();
 
 </script>
 
