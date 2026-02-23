@@ -22,6 +22,7 @@ body{
 background: linear-gradient(135deg,#020617,#0f172a);
 color:white;
 text-align:center;
+line-height:1.6;
 }
 
 /* Container */
@@ -32,7 +33,7 @@ margin:auto;
 padding:80px 20px;
 }
 
-/* Profile */
+/* Profile Image */
 
 .profile{
 width:180px;
@@ -52,7 +53,7 @@ transform:scale(1.05);
 
 h1{
 font-size:3rem;
-margin-bottom:15px;
+margin-bottom:10px;
 }
 
 .greeting{
@@ -139,6 +140,8 @@ color:#94a3b8;
 
 <div class="container">
 
+<!-- Profile Section -->
+
 <img src="profile.jpg" class="profile">
 
 <h1>Raj Karan Sah</h1>
@@ -146,8 +149,8 @@ color:#94a3b8;
 <p class="greeting" id="visitorGreeting"></p>
 
 <p style="color:#cbd5e1; max-width:600px; margin:auto;">
-Computer Engineering Student • Web Developer<br>
-Building simple and modern digital experiences.
+Computer Engineering Student • Web Development Enthusiast<br>
+Building simple, modern, beautiful web experiences.
 </p>
 
 <!-- Social Links -->
@@ -162,7 +165,8 @@ GitHub
 LinkedIn
 </a>
 
-<a href="mailto:rajkaransah274@gmail.com" class="btn outline">
+<a href="mailto:rajkaransah274@gmail.com?subject=Hello Raj Karan&body=Hi Raj Karan, I visited your portfolio website." 
+class="btn outline">
 Gmail ✉️
 </a>
 
@@ -224,19 +228,19 @@ Working on new ideas.
 
 </section>
 
-<!-- Bottom Say Hi -->
+<!-- Bottom Say Hello -->
 
 <section style="margin-top:120px;">
 
-<h2>Say Hi 👋</h2>
+<h2>Say Hello 👋</h2>
 
 <p style="color:#cbd5e1; max-width:600px; margin:auto;">
-Want to talk, collaborate, or just say hello?
+Want to talk, collaborate or just say hi?
 </p>
 
 <div style="margin-top:30px;">
 
-<a href="mailto:rajkaransah274@gmail.com?subject=Hello Raj" 
+<a href="mailto:rajkaransah274@gmail.com?subject=Portfolio Visit&body=Hello Raj, I visited your portfolio and want to connect."
 class="btn primary">
 Say Hello ✉️
 </a>
@@ -261,16 +265,16 @@ let hour = new Date().getHours();
 let greeting = "";
 
 if(hour < 12){
-greeting = "🌅 Good Morning! Thanks for visiting my profile";
+greeting = "🌅 Good Morning! Welcome to my profile";
 }
 else if(hour < 18){
-greeting = "☀️ Good Afternoon! Thanks for visiting my profile";
+greeting = "☀️ Good Afternoon! Welcome to my profile";
 }
 else if(hour < 21){
-greeting = "🌇 Good Evening! Thanks for visiting my profile";
+greeting = "🌇 Good Evening! Welcome to my profile";
 }
 else{
-greeting = "🌙 Good Night! Thanks for visiting my profile";
+greeting = "🌙 Good Night! Thanks for visiting";
 }
 
 document.getElementById("visitorGreeting").innerText = greeting;
