@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lab — Raj Karan Sah</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #03020a;
+    --surface: #0d0b1a;
+    --card: #120f25;
+    --border: rgba(139, 92, 246, 0.2);
+    --accent: #7c3aed;
+    --accent2: #6366f1;
+    --glow: rgba(124, 58, 237, 0.4);
+    --text: #e2e0f0;
+    --muted: #7b7a99;
+    --error: #f87171;
+    --success: #34d399;
+  }
+
+  body {
+    font-family: 'Space Grotesk', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* Animated background grid */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(124,58,237,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(124,58,237,0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    z-index: 0;
+  }
+
+  /* Glowing orbs */
+  .orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.15;
+    z-index: 0;
+    animation: drift 8s ease-in-out infinite alternate;
+  }
+  .orb1 { width: 400px; height: 400px; background: #7c3aed; top: -100px; left: -100px; animation-delay: 0s; }
+  .orb2 { width: 300px; height: 300px; background: #6366f1; bottom: -80px; right: -80px; animation-delay: 3s; }
+  @keyframes drift { from { transform: translate(0,0); } to { transform: translate(30px, 20px); } }
+
+  /* Back link */
+  .back {
+    position: fixed;
+    top: 24px;
+    left: 24px;
+    z-index: 10;
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s;
+  }
+  .back:hover { color: var(--text); }
+
+  /* Card */
+  .card {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 440px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 44px 40px;
+    box-shadow: 0 0 60px rgba(124,58,237,0.1), 0 20px 60px rgba(0,0,0,0.5);
+    backdrop-filter: blur(20px);
+    animation: slideUp 0.5s ease;
+  }
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Lab badge */
+  .lab-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(124,58,237,0.15);
+    border: 1px solid rgba(124,58,237,0.3);
+    border-radius: 999px;
+    padding: 4px 14px;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.78rem;
+    color: #a78bfa;
+    margin-bottom: 20px;
+  }
+  .dot { width: 6px; height: 6px; border-radius: 50%; background: #7c3aed; box-shadow: 0 0 6px #7c3aed; animation: blink 1.4s infinite; }
+  @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+
+  h1 { font-size: 1.9rem; font-weight: 700; margin-bottom: 6px; letter-spacing: -0.5px; }
+  .subtitle { color: var(--muted); font-size: 0.9rem; margin-bottom: 32px; }
+
+  /* Tabs */
+  .tabs {
+    display: flex;
+    background: rgba(255,255,255,0.04);
+    border-radius: 12px;
+    padding: 4px;
+    margin-bottom: 28px;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .tab {
+    flex: 1;
+    padding: 9px;
+    border-radius: 9px;
+    border: none;
+    background: transparent;
+    color: var(--muted);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.25s;
+  }
+  .tab.active {
+    background: rgba(124,58,237,0.25);
+    color: #c4b5fd;
+    box-shadow: 0 0 0 1px rgba(124,58,237,0.4);
+  }
+
+  /* Form */
+  .form-group { margin-bottom: 18px; }
+  label {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--muted);
+    margin-bottom: 7px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  input {
+    width: 100%;
+    padding: 13px 16px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    color: var(--text);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--glow);
+  }
+  input::placeholder { color: var(--muted); }
+
+  /* Error / success messages */
+  .msg {
+    font-size: 0.82rem;
+    padding: 10px 14px;
+    border-radius: 10px;
+    margin-bottom: 16px;
+    display: none;
+  }
+  .msg.error { background: rgba(248,113,113,0.1); border: 1px solid rgba(248,113,113,0.3); color: var(--error); }
+  .msg.success { background: rgba(52,211,153,0.1); border: 1px solid rgba(52,211,153,0.3); color: var(--success); }
+  .msg.show { display: block; animation: fadeIn 0.3s ease; }
+  @keyframes fadeIn { from{opacity:0;transform:translateY(-4px);} to{opacity:1;transform:translateY(0);} }
+
+  /* Submit button */
+  .submit {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    color: white;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+    margin-top: 4px;
+  }
+  .submit::before {
+    content:'';
+    position:absolute;
+    top:-50%;left:-60%;
+    width:40%;height:200%;
+    background:rgba(255,255,255,0.15);
+    transform:skewX(-20deg);
+    transition:.5s;
+  }
+  .submit:hover::before { left:120%; }
+  .submit:hover { transform: translateY(-2px); box-shadow: 0 8px 25px var(--glow); }
+  .submit:active { transform: translateY(0); }
+
+  /* Welcome screen */
+  .welcome { display: none; text-align: center; }
+  .welcome.show { display: block; animation: slideUp 0.5s ease; }
+  .avatar-circle {
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2rem;
+    margin: 0 auto 20px;
+    box-shadow: 0 0 30px var(--glow);
+  }
+  .welcome h2 { font-size: 1.6rem; margin-bottom: 8px; }
+  .welcome p { color: var(--muted); margin-bottom: 28px; font-size: 0.9rem; }
+  .logout-btn {
+    display: inline-block;
+    padding: 10px 28px;
+    border-radius: 999px;
+    border: 1px solid rgba(124,58,237,0.4);
+    background: transparent;
+    color: #c4b5fd;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.25s;
+  }
+  .logout-btn:hover { background: rgba(124,58,237,0.15); }
+
+  .divider { border: none; border-top: 1px solid rgba(255,255,255,0.06); margin: 20px 0; }
+  .hint { font-size: 0.8rem; color: var(--muted); text-align: center; margin-top: 18px; }
+</style>
+</head>
+<body>
+
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+
+<a href="index.html" class="back">← Back to Portfolio</a>
+
+<div class="card" id="authCard">
+  <div class="lab-badge"><span class="dot"></span> lab.rajkaran.com.np</div>
+  <h1>Welcome to the Lab</h1>
+  <p class="subtitle">Sign up or log in to enter.</p>
+
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab('login')">Login</button>
+    <button class="tab" onclick="switchTab('signup')">Sign Up</button>
+  </div>
+
+  <div id="msgBox" class="msg"></div>
+
+  <!-- LOGIN FORM -->
+  <div id="loginForm">
+    <div class="form-group">
+      <label>Gmail</label>
+      <input type="email" id="loginEmail" placeholder="yourname@gmail.com">
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" id="loginPass" placeholder="••••••••">
+    </div>
+    <button class="submit" onclick="handleLogin()">Login →</button>
+    <p class="hint">Don't have an account? <a href="#" onclick="switchTab('signup')" style="color:#a78bfa;text-decoration:none;">Sign up</a></p>
+  </div>
+
+  <!-- SIGNUP FORM -->
+  <div id="signupForm" style="display:none;">
+    <div class="form-group">
+      <label>Gmail Address</label>
+      <input type="email" id="signupEmail" placeholder="yourname@gmail.com">
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" id="signupPass" placeholder="At least 6 characters">
+    </div>
+    <div class="form-group">
+      <label>Confirm Password</label>
+      <input type="password" id="signupConfirm" placeholder="Repeat password">
+    </div>
+    <button class="submit" onclick="handleSignup()">Create Account →</button>
+    <p class="hint">Already have an account? <a href="#" onclick="switchTab('login')" style="color:#a78bfa;text-decoration:none;">Login</a></p>
+  </div>
+
+  <!-- WELCOME SCREEN (hidden by default) -->
+  <div class="welcome" id="welcomeScreen">
+    <div class="avatar-circle">🧪</div>
+    <h2>You're in the Lab!</h2>
+    <p id="welcomeEmail" style="color:#a78bfa;margin-bottom:6px;"></p>
+    <p>Explore, experiment, and build.<br>More features coming soon 🚀</p>
+    <button class="logout-btn" onclick="handleLogout()">Log Out</button>
+  </div>
+</div>
+
+<script>
+  // Helpers
+  function getUsers() {
+    return JSON.parse(localStorage.getItem('lab_users') || '{}');
+  }
+  function saveUsers(u) {
+    localStorage.setItem('lab_users', JSON.stringify(u));
+  }
+  function showMsg(text, type) {
+    const el = document.getElementById('msgBox');
+    el.textContent = text;
+    el.className = 'msg ' + type + ' show';
+    setTimeout(() => el.className = 'msg', 3500);
+  }
+  function isGmail(email) {
+    return /^[a-zA-Z0-9._%+\-]+@gmail\.com$/.test(email);
+  }
+
+  // Tab switch
+  function switchTab(tab) {
+    const tabs = document.querySelectorAll('.tab');
+    document.getElementById('loginForm').style.display = tab === 'login' ? 'block' : 'none';
+    document.getElementById('signupForm').style.display = tab === 'signup' ? 'block' : 'none';
+    tabs[0].classList.toggle('active', tab === 'login');
+    tabs[1].classList.toggle('active', tab === 'signup');
+    document.getElementById('msgBox').className = 'msg';
+  }
+
+  // Sign Up
+  function handleSignup() {
+    const email = document.getElementById('signupEmail').value.trim();
+    const pass = document.getElementById('signupPass').value;
+    const confirm = document.getElementById('signupConfirm').value;
+
+    if (!email) return showMsg('Please enter your Gmail address.', 'error');
+    if (!isGmail(email)) return showMsg('Please use a valid @gmail.com address.', 'error');
+    if (pass.length < 6) return showMsg('Password must be at least 6 characters.', 'error');
+    if (pass !== confirm) return showMsg('Passwords do not match.', 'error');
+
+    const users = getUsers();
+    if (users[email]) return showMsg('This Gmail is already registered. Please login.', 'error');
+
+    users[email] = pass;
+    saveUsers(users);
+    showMsg('Account created! You can now login.', 'success');
+    setTimeout(() => switchTab('login'), 1500);
+  }
+
+  // Login
+  function handleLogin() {
+    const email = document.getElementById('loginEmail').value.trim();
+    const pass = document.getElementById('loginPass').value;
+
+    if (!email) return showMsg('Please enter your Gmail address.', 'error');
+    if (!isGmail(email)) return showMsg('Please use a valid @gmail.com address.', 'error');
+    if (!pass) return showMsg('Please enter your password.', 'error');
+
+    const users = getUsers();
+    if (!users[email]) return showMsg('No account found. Please sign up first.', 'error');
+    if (users[email] !== pass) return showMsg('Incorrect password. Try again.', 'error');
+
+    localStorage.setItem('lab_session', email);
+    showWelcome(email);
+  }
+
+  // Logout
+  function handleLogout() {
+    localStorage.removeItem('lab_session');
+    document.getElementById('welcomeScreen').classList.remove('show');
+    document.getElementById('welcomeScreen').style.display = 'none';
+    document.querySelector('.tabs').style.display = '';
+    document.getElementById('loginForm').style.display = 'block';
+    document.getElementById('signupForm').style.display = 'none';
+    document.querySelectorAll('.tab')[0].classList.add('active');
+    document.querySelectorAll('.tab')[1].classList.remove('active');
+    document.getElementById('loginEmail').value = '';
+    document.getElementById('loginPass').value = '';
+  }
+
+  function showWelcome(email) {
+    document.querySelector('.tabs').style.display = 'none';
+    document.getElementById('loginForm').style.display = 'none';
+    document.getElementById('signupForm').style.display = 'none';
+    document.getElementById('msgBox').className = 'msg';
+    document.getElementById('welcomeEmail').textContent = email;
+    const ws = document.getElementById('welcomeScreen');
+    ws.style.display = 'block';
+    ws.classList.add('show');
+  }
+
+  // Auto-login if session exists
+  window.onload = () => {
+    const session = localStorage.getItem('lab_session');
+    if (session) showWelcome(session);
+  };
+
+  // Enter key support
+  document.addEventListener('keydown', e => {
+    if (e.key !== 'Enter') return;
+    if (document.getElementById('loginForm').style.display !== 'none') handleLogin();
+    else if (document.getElementById('signupForm').style.display !== 'none') handleSignup();
+  });
+</script>
+</body>
+</html>
