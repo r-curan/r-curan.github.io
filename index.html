@@ -530,6 +530,9 @@ footer {
   opacity: 1;
   transform: translateY(0);
 }
+/* Fallback - always show content after 1s even if observer fails */
+.reveal { animation: fallbackShow 0s 1s forwards; }
+@keyframes fallbackShow { to { opacity: 1; transform: translateY(0); } }
 
 @media (max-width: 768px) {
   .hero { flex-direction: column-reverse; gap: 36px; padding: 50px 20px 40px; text-align: center; }
@@ -617,7 +620,7 @@ footer {
       <div class="edu-title">Dayanand Anglo-Vedic College(D.A.V)</div>
       <div class="edu-sub">+2 Science — Intermediate</div>
       <div class="edu-gpa">📊 CGPA 3.16 / 4.0</div>
-      <div class="edu-loc">📍 jawalakhel,Nepal</div>
+      <div class="edu-loc">📍 Jawalakhel,Nepal</div>
     </a>
 
     <a href="https://kec.edu.np/" target="_blank" class="edu-card reveal" style="transition-delay:.15s">
@@ -658,16 +661,16 @@ footer {
           <span class="proj-tag">Speech</span>
           <span class="proj-tag">Deep Learning</span>
         </div>
-        <div class="proj-title">Clone-The-Tone: Nepali Voice Cloning System</div>
+        <div class="proj-title">A neural approach to multi-speaker voice cloning in english using fastspeech2 with ecapa-tdnn speaker representations</div>
         <div class="proj-desc">
-          A few-shot multi-speaker voice cloning system for the Nepali language using FastSpeech 2 acoustic modeling and ECAPA-TDNN speaker embeddings — enabling high-quality speaker-specific speech synthesis from minimal data.
+          A few-shot multi-speaker voice cloning system for the English language using FastSpeech 2 modeling and ECAPA-TDNN speaker embeddings — enabling high-quality speaker-specific speech synthesis from minimal data.
         </div>
         <ul class="proj-features">
           <li>Few-shot voice cloning with just a few minutes of reference audio</li>
           <li>Multi-speaker support using ECAPA-TDNN speaker embeddings</li>
           <li>FastSpeech 2 non-autoregressive TTS for fast, parallel synthesis</li>
           <li>HiFi-GAN vocoder for high-fidelity waveform reconstruction</li>
-          <li>Trained on SLR43, SLR143 & SLR54 Nepali speech datasets</li>
+          <li>Trained on SLR60(LibriTTS train-clean-100 and train-clean-360 subsets)</li>
           <li>Audio preprocessing: denoising, normalization, mel-spectrogram extraction</li>
         </ul>
         <div class="proj-links">
@@ -719,7 +722,7 @@ footer {
 <section class="section" id="contact">
   <div class="contact-wrap reveal">
     <div class="section-tag" style="display:inline-block; margin-bottom:18px;">Get In Touch</div>
-    <div class="contact-title">Say Hello 👋</div>
+    <div class="contact-title">Say Hello </div>
     <div class="contact-sub">Want to talk, collaborate or just say hi? My inbox is always open.</div>
     <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
       <a href="/cdn-cgi/l/email-protection#6517040f0e0417040b16040d575251250208040c094b060a085a1610070f00061158350a1711030a090c0a45330c160c1143070a011c582d0009090a4537040f49452c45130c160c110001451c0a101745150a1711030a090c0a45040b014512040b1145110a45060a0b0b0006114b" class="btn btn-primary">Say Hello ✉️</a>
@@ -733,7 +736,7 @@ footer {
 <!-- LAB (shifted to bottom) -->
 <section class="section" id="lab">
   <div class="lab-wrap reveal">
-    <div class="lab-title">🧪 The Lab</div>
+    <div class="lab-title">Login page</div>
     <div class="lab-sub">Experiments, side projects & creative builds</div>
     <a href="lab.html" class="btn btn-lab">
       Enter the Lab →
@@ -742,15 +745,32 @@ footer {
 </section>
 
 <footer>
-  <p>© 2026 Raj Karan Sah · Made with ☕ in Nepal</p>
+  <p>© 2026 Raj Karan Sah ·9803359431</p>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 // Greeting
 function setGreeting() {
   const h = new Date().getHours();
-  let g = h < 12 ? "🌅 Good Morning! Welcome to my profile"
-        : h < 18 ? "☀️ Good Afternoon! Welcome to my profile"
-        : h < 21 ? "🌇 Good Evening! Welcome to my profile"
-        : "🌙 Good Night! Thanks for visiting";
-  docu
+  let g = h < 12 ? "Good Morning! Welcome to my profile"
+        : h < 18 ? "Good Afternoon! Welcome to my profile"
+        : h < 21 ? "Good Evening! Welcome to my profile"
+        : "Good Night! Thanks for visiting";
+  document.getElementById("greetingBar").innerText = g;
+}
+setGreeting();
+
+// Scroll reveal - immediately show elements already in viewport
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => {
+  const rect = el.getBoundingClientRect();
+  if (rect.top < window.innerHeight) {
+    el.classList.add('visible');
+  } else {
+    observer.observe(el);
+  }
+});
+</script>
