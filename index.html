@@ -1,778 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Raj Karan Sah — Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
-<style>
-:root {
-  --bg: #f0f4ff;
-  --bg2: #e8eeff;
-  --surface: rgba(255,255,255,0.72);
-  --surface2: rgba(255,255,255,0.5);
-  --border: rgba(99,102,241,0.13);
-  --accent: #5b5ef4;
-  --accent2: #818cf8;
-  --accent3: #c7d2fe;
-  --text: #1e1b4b;
-  --muted: #6b7280;
-  --muted2: #9ca3af;
-  --card-shadow: 0 4px 32px rgba(99,102,241,0.09), 0 1.5px 6px rgba(99,102,241,0.06);
-  --card-shadow-hover: 0 12px 48px rgba(99,102,241,0.16), 0 2px 8px rgba(99,102,241,0.10);
-}
-
-* { margin:0; padding:0; box-sizing:border-box; }
-html { scroll-behavior: smooth; }
-
-body {
-  font-family: 'DM Sans', sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.7;
-  min-height: 100vh;
-  position: relative;
-  overflow-x: hidden;
-}
-
-/* Soft background blobs */
-body::before {
-  content: '';
-  position: fixed;
-  top: -120px; left: -120px;
-  width: 600px; height: 600px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(199,210,254,0.45) 0%, transparent 70%);
-  pointer-events: none;
-  z-index: 0;
-}
-body::after {
-  content: '';
-  position: fixed;
-  bottom: -100px; right: -100px;
-  width: 500px; height: 500px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(167,139,250,0.22) 0%, transparent 70%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* NAV */
-nav {
-  position: sticky; top: 0; z-index: 100;
-  background: rgba(240,244,255,0.88);
-  backdrop-filter: blur(18px);
-  border-bottom: 1px solid var(--border);
-  padding: 0 48px;
-  height: 64px;
-  display: flex; align-items: center; justify-content: space-between;
-}
-.nav-logo {
-  font-family: 'Syne', sans-serif;
-  font-weight: 800; font-size: 1.1rem;
-  color: var(--text);
-  letter-spacing: -0.5px;
-}
-.nav-links { display: flex; gap: 36px; }
-.nav-links a {
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 500; font-size: 0.92rem;
-  color: var(--muted);
-  text-decoration: none;
-  transition: color .2s;
-  letter-spacing: 0.01em;
-  position: relative;
-}
-.nav-links a::after {
-  content: '';
-  position: absolute; bottom: -4px; left: 0; right: 0;
-  height: 2px; border-radius: 2px;
-  background: var(--accent);
-  transform: scaleX(0);
-  transition: transform .2s;
-}
-.nav-links a:hover { color: var(--text); }
-.nav-links a:hover::after { transform: scaleX(1); }
-
-/* HERO */
-.hero {
-  position: relative; z-index: 1;
-  max-width: 1100px; margin: 0 auto;
-  padding: 90px 40px 70px;
-  display: flex; align-items: center; gap: 60px;
-}
-.hero-text { flex: 1; }
-.hero-greeting {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 1rem; font-weight: 500;
-  color: var(--accent2);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  margin-bottom: 14px;
-  display: flex; align-items: center; gap: 8px;
-}
-.hero-greeting::before {
-  content: '';
-  display: inline-block; width: 32px; height: 2px;
-  background: var(--accent2); border-radius: 2px;
-}
-.hero-name {
-  font-family: 'Syne', sans-serif;
-  font-size: clamp(2.4rem, 5vw, 3.8rem);
-  font-weight: 800;
-  line-height: 1.08;
-  color: var(--text);
-  letter-spacing: -1.5px;
-  margin-bottom: 20px;
-}
-.hero-name span { color: var(--text); }
-.hero-desc {
-  color: var(--muted);
-  font-size: 1.05rem; font-weight: 400;
-  max-width: 480px;
-  margin-bottom: 36px;
-  line-height: 1.75;
-}
-.hero-buttons { display: flex; flex-wrap: wrap; gap: 12px; }
-.btn {
-  display: inline-flex; align-items: center; gap: 7px;
-  padding: 11px 24px;
-  border-radius: 999px;
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 600; font-size: 0.9rem;
-  text-decoration: none;
-  transition: all .25s;
-  cursor: pointer;
-  border: none;
-  letter-spacing: 0.01em;
-}
-.btn-primary {
-  background: var(--accent);
-  color: white;
-  box-shadow: 0 4px 18px rgba(91,94,244,0.3);
-}
-.btn-primary:hover {
-  background: #4547d4;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 28px rgba(91,94,244,0.38);
-}
-.btn-outline {
-  background: var(--surface);
-  color: var(--text);
-  border: 1.5px solid var(--border);
-  backdrop-filter: blur(8px);
-}
-.btn-outline:hover {
-  background: white;
-  border-color: var(--accent2);
-  color: var(--accent);
-  transform: translateY(-2px);
-}
-
-/* Hero image side */
-.hero-image-side {
-  flex-shrink: 0;
-  position: relative;
-  display: flex; align-items: center; justify-content: center;
-}
-.hero-img-wrap {
-  position: relative;
-  width: 260px; height: 300px;
-}
-.hero-img-bg {
-  position: absolute;
-  inset: 0;
-  border-radius: 30px;
-  background: linear-gradient(135deg, var(--accent3) 0%, #ddd6fe 100%);
-  transform: rotate(4deg);
-  z-index: 0;
-}
-.hero-img-bg2 {
-  position: absolute;
-  inset: 0;
-  border-radius: 30px;
-  background: linear-gradient(135deg, #e0e7ff 0%, var(--accent3) 100%);
-  transform: rotate(-3deg);
-  z-index: 0;
-  opacity: 0.6;
-}
-.hero-img {
-  position: relative; z-index: 1;
-  width: 240px; height: 280px;
-  border-radius: 24px;
-  object-fit: cover;
-  object-position: center 25%;
-  box-shadow: 0 16px 48px rgba(91,94,244,0.2);
-  border: 4px solid white;
-  display: block;
-  margin: 10px auto 0;
-  background: linear-gradient(135deg, #c7d2fe 0%, #e0e7ff 100%);
-}
-.hero-badge {
-  position: absolute;
-  bottom: -14px; right: -14px;
-  z-index: 2;
-  background: white;
-  border-radius: 16px;
-  padding: 10px 16px;
-  box-shadow: var(--card-shadow);
-  display: flex; align-items: center; gap: 8px;
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 600; font-size: 0.8rem;
-  color: var(--text);
-  white-space: nowrap;
-}
-.hero-badge .dot {
-  width: 8px; height: 8px; border-radius: 50%;
-  background: #22c55e;
-  animation: pulse-green 1.8s ease-in-out infinite;
-}
-@keyframes pulse-green {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.4); }
-  50% { box-shadow: 0 0 0 6px rgba(34,197,94,0); }
-}
-
-/* SECTIONS */
-.section {
-  position: relative; z-index: 1;
-  max-width: 1100px; margin: 0 auto;
-  padding: 80px 40px;
-}
-.section-header {
-  display: flex; align-items: center; gap: 16px;
-  margin-bottom: 50px;
-}
-.section-tag {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.78rem; font-weight: 600;
-  color: var(--accent);
-  text-transform: uppercase; letter-spacing: 0.1em;
-  background: rgba(91,94,244,0.08);
-  padding: 4px 12px; border-radius: 999px;
-}
-.section-title {
-  font-family: 'Syne', sans-serif;
-  font-size: clamp(1.7rem, 3vw, 2.3rem);
-  font-weight: 800;
-  letter-spacing: -0.8px;
-  color: var(--text);
-}
-
-/* Divider */
-.divider {
-  max-width: 1100px; margin: 0 auto;
-  padding: 0 40px;
-}
-.divider hr {
-  border: none;
-  height: 1px;
-  background: linear-gradient(to right, transparent, var(--border), transparent);
-}
-
-/* EDUCATION */
-.edu-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-}
-.edu-card {
-  background: var(--surface);
-  border: 1.5px solid var(--border);
-  border-radius: 20px;
-  padding: 28px;
-  backdrop-filter: blur(12px);
-  box-shadow: var(--card-shadow);
-  transition: all .3s;
-  text-decoration: none;
-  color: inherit;
-  display: block;
-  position: relative;
-  overflow: hidden;
-}
-.edu-card::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0;
-  height: 3px;
-  background: linear-gradient(to right, var(--accent), var(--accent2));
-  border-radius: 3px 3px 0 0;
-  opacity: 0;
-  transition: opacity .3s;
-}
-.edu-card:hover { transform: translateY(-6px); box-shadow: var(--card-shadow-hover); }
-.edu-card:hover::before { opacity: 1; }
-.edu-icon { font-size: 2rem; margin-bottom: 14px; }
-.edu-title {
-  font-family: 'Syne', sans-serif;
-  font-weight: 700; font-size: 1.05rem;
-  color: var(--text); margin-bottom: 6px;
-}
-.edu-sub {
-  font-size: 0.88rem; color: var(--muted);
-  margin-bottom: 10px;
-}
-.edu-gpa {
-  display: inline-flex; align-items: center; gap: 6px;
-  font-size: 0.82rem; font-weight: 600;
-  color: var(--accent);
-  background: rgba(91,94,244,0.08);
-  padding: 4px 10px; border-radius: 999px;
-}
-.edu-loc {
-  font-size: 0.82rem; color: var(--muted2);
-  margin-top: 8px;
-  display: flex; align-items: center; gap: 4px;
-}
-
-/* PROJECTS */
-.proj-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 28px;
-}
-.proj-card {
-  background: var(--surface);
-  border: 1.5px solid var(--border);
-  border-radius: 24px;
-  overflow: hidden;
-  box-shadow: var(--card-shadow);
-  transition: all .3s;
-  display: flex; flex-direction: column;
-}
-.proj-card:hover { transform: translateY(-8px); box-shadow: var(--card-shadow-hover); }
-
-.proj-img-wrap {
-  width: 100%; height: 200px;
-  background: linear-gradient(135deg, #e0e7ff 0%, #ddd6fe 100%);
-  display: flex; align-items: center; justify-content: center;
-  position: relative;
-  overflow: hidden;
-}
-.proj-img-wrap img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-}
-.proj-img-placeholder {
-  font-size: 3.5rem;
-  opacity: 0.35;
-}
-.proj-img-upload-note {
-  position: absolute; bottom: 8px; right: 10px;
-  font-size: 0.7rem; color: rgba(91,94,244,0.5);
-  font-style: italic;
-}
-.proj-body { padding: 24px; flex: 1; display: flex; flex-direction: column; }
-.proj-tags {
-  display: flex; flex-wrap: wrap; gap: 6px;
-  margin-bottom: 14px;
-}
-.proj-tag {
-  font-size: 0.72rem; font-weight: 600;
-  text-transform: uppercase; letter-spacing: 0.06em;
-  padding: 3px 10px; border-radius: 999px;
-  background: rgba(91,94,244,0.08);
-  color: var(--accent);
-}
-.proj-title {
-  font-family: 'Syne', sans-serif;
-  font-weight: 700; font-size: 1.15rem;
-  color: var(--text); margin-bottom: 10px;
-  line-height: 1.3;
-}
-.proj-desc {
-  font-size: 0.9rem; color: var(--muted);
-  margin-bottom: 16px; line-height: 1.65; flex: 1;
-}
-.proj-features {
-  margin-bottom: 20px;
-}
-.proj-features li {
-  font-size: 0.85rem; color: var(--muted);
-  margin-bottom: 5px;
-  padding-left: 16px;
-  position: relative;
-  list-style: none;
-}
-.proj-features li::before {
-  content: '→';
-  position: absolute; left: 0;
-  color: var(--accent2);
-  font-size: 0.78rem;
-}
-.proj-links {
-  display: flex; gap: 10px; flex-wrap: wrap;
-}
-.proj-link {
-  display: inline-flex; align-items: center; gap: 6px;
-  padding: 8px 18px; border-radius: 999px;
-  font-size: 0.83rem; font-weight: 600;
-  text-decoration: none; transition: all .2s;
-}
-.proj-link-code {
-  background: var(--text); color: white;
-}
-.proj-link-code:hover { background: var(--accent); }
-.proj-link-secondary {
-  background: rgba(91,94,244,0.08);
-  color: var(--accent);
-  border: 1.5px solid var(--accent3);
-}
-.proj-link-secondary:hover { background: var(--accent); color: white; border-color: var(--accent); }
-
-.proj-coming {
-  background: var(--surface);
-  border: 1.5px dashed var(--border);
-  border-radius: 24px;
-  padding: 40px;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  text-align: center;
-  box-shadow: none;
-}
-.proj-coming:hover { transform: none; box-shadow: none; }
-.proj-coming-icon { font-size: 2.5rem; margin-bottom: 12px; opacity: 0.5; }
-.proj-coming-text { font-size: 0.9rem; color: var(--muted2); }
-
-/* CONTACT */
-.contact-wrap {
-  background: var(--surface);
-  border: 1.5px solid var(--border);
-  border-radius: 28px;
-  padding: 56px 40px;
-  backdrop-filter: blur(12px);
-  box-shadow: var(--card-shadow);
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-.contact-wrap::before {
-  content: '';
-  position: absolute; top: -80px; right: -80px;
-  width: 260px; height: 260px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(199,210,254,0.5) 0%, transparent 70%);
-}
-.contact-title {
-  font-family: 'Syne', sans-serif;
-  font-size: 2rem; font-weight: 800;
-  color: var(--text); margin-bottom: 12px;
-  letter-spacing: -0.5px;
-}
-.contact-sub { color: var(--muted); font-size: 1rem; margin-bottom: 32px; }
-
-/* LAB */
-.lab-wrap {
-  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
-  border-radius: 28px;
-  padding: 48px 40px;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-.lab-wrap::before {
-  content: '';
-  position: absolute; top: -60px; left: -60px;
-  width: 300px; height: 300px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(129,140,248,0.25) 0%, transparent 70%);
-  pointer-events: none;
-}
-.lab-wrap::after {
-  content: '';
-  position: absolute; bottom: -40px; right: -40px;
-  width: 200px; height: 200px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(167,139,250,0.2) 0%, transparent 70%);
-  pointer-events: none;
-}
-.lab-title {
-  font-family: 'Syne', sans-serif;
-  font-size: 1.8rem; font-weight: 800;
-  color: white; margin-bottom: 10px;
-}
-.lab-sub { color: rgba(255,255,255,0.6); font-size: 0.95rem; margin-bottom: 28px; }
-.btn-lab {
-  background: linear-gradient(135deg, #7c3aed, var(--accent));
-  color: white;
-  box-shadow: 0 8px 28px rgba(91,94,244,0.4);
-  font-size: 0.95rem;
-}
-.btn-lab:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 36px rgba(91,94,244,0.5);
-}
-
-/* FOOTER */
-footer {
-  position: relative; z-index: 1;
-  text-align: center;
-  padding: 32px 40px;
-  color: var(--muted2);
-  font-size: 0.85rem;
-  border-top: 1px solid var(--border);
-}
-
-/* GREETING BAR */
-#greetingBar {
-  background: rgba(91,94,244,0.07);
-  border-bottom: 1px solid var(--border);
-  text-align: center;
-  padding: 8px 20px;
-  font-size: 0.85rem;
-  color: var(--accent);
-  font-weight: 500;
-  letter-spacing: 0.02em;
-}
-
-/* Scroll animations */
-.reveal {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-/* Fallback - always show content after 1s even if observer fails */
-.reveal { animation: fallbackShow 0s 1s forwards; }
-@keyframes fallbackShow { to { opacity: 1; transform: translateY(0); } }
-
-@media (max-width: 768px) {
-  .hero { flex-direction: column-reverse; gap: 36px; padding: 50px 20px 40px; text-align: center; }
-  .hero-greeting { justify-content: center; }
-  .hero-desc { margin: 0 auto 28px; }
-  .hero-buttons { justify-content: center; }
-  .hero-img-wrap { width: 200px; height: 230px; }
-  .hero-img { width: 185px; height: 215px; }
-  nav { padding: 0 20px; }
-  .nav-links { gap: 18px; }
-  .nav-links a { font-size: 0.8rem; }
-  .section { padding: 50px 20px; }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Raj Karan Sah — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<div id="greetingBar"></div>
+  <div id="greetingBar"></div>
 
-<nav>
-  <div class="nav-logo">Raj Karan Sah</div>
-  <div class="nav-links">
-    <a href="#hero">About</a>
-    <a href="#education">Education</a>
-    <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
-    <a href="#lab">Login Page</a>
-  </div>
-</nav>
+  <!-- HEADER COMPONENT -->
+  <div id="header-container"></div>
 
-<!-- HERO -->
-<div class="hero" id="hero">
-  <div class="hero-text reveal">
+  <!-- HERO COMPONENT -->
+  <div id="hero-container"></div>
 
-    <h1 class="hero-name">
-      I'm <span>Raj Karan</span><br>Sah
-    </h1>
-    <p class="hero-desc">
-      I'm a Computer Engineering student at Kantipur Engineering College, Dhapakhel, Lalitpur. 
-      I enjoy building things from simple websites to AI-based systems like voice cloning.
-      I'm passionate about learning new technologies and solving real-world problems through code.
-      
-      Outside of studying and coding, I'm a big tea lover and love watching football in my free time.
-    </p>
-    <div class="hero-buttons">
-      <a href="https://github.com/r-curan" class="btn btn-primary" target="_blank">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.55-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.49 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
-        GitHub
-      </a>
-      <a href="https://www.linkedin.com/in/raj-karan-sah-305442310/" class="btn btn-outline" target="_blank">LinkedIn</a>
-      <a href="/cdn-cgi/l/email-protection#89fbe8e3e2e8fbe8e7fae8e1bbbebdc9eee4e8e0e5a7eae6e4b6fafcebe3eceafdb4c1ece5e5e6a9dbe8e3a9c2e8fbe8e7afebe6edf0b4c1e0a9dbe8e3a9c2e8fbe8e7a5a9c0a9ffe0fae0fdeceda9f0e6fcfba9f9e6fbfdefe6e5e0e6a7" class="btn btn-outline">Gmail ✉️</a>
-    </div>
-  </div>
+  <!-- DIVIDER -->
+  <div class="divider"><hr></div>
 
-  <div class="hero-image-side reveal" style="transition-delay:.15s">
-    <div class="hero-img-wrap">
-      <div class="hero-img-bg"></div>
-      <div class="hero-img-bg2"></div>
-      <img src="profile.jpg" class="hero-img" alt="Raj Karan Sah" onerror="this.style.background='linear-gradient(135deg,#c7d2fe 0%,#e0e7ff 100%)';this.style.display='flex';this.style.alignItems='center';this.style.justifyContent='center'">
-      <div class="hero-badge">
-        <span class="dot"></span>
-        Available for collaboration
-      </div>
-    </div>
-  </div>
-</div>
+  <!-- EDUCATION COMPONENT -->
+  <div id="education-container"></div>
 
-<div class="divider"><hr></div>
+  <!-- DIVIDER -->
+  <div class="divider"><hr></div>
 
-<!-- EDUCATION -->
-<section class="section" id="education">
-  <div class="section-header reveal">
-    <span class="section-tag">Background</span>
-    <h2 class="section-title">Education</h2>
-  </div>
-  <div class="edu-grid">
+  <!-- PROJECTS COMPONENT -->
+  <div id="projects-container"></div>
 
-    <a href="#" class="edu-card reveal" style="transition-delay:.05s">
-      <div class="edu-icon">🏫</div>
-      <div class="edu-title">Shree Secondary School</div>
-      <div class="edu-sub">Bhangaha, Sitapur, Siddhapur — Schooling</div>
-      <div class="edu-gpa">📊 GPA 3.05 / 4.0</div>
-      <div class="edu-loc">📍 Sitapur, Nepal</div>
-    </a>
+  <!-- DIVIDER -->
+  <div class="divider"><hr></div>
 
-    <a href="https://davcollege.edu.np/" target="_blank" class="edu-card reveal" style="transition-delay:.1s">
-      <div class="edu-icon">📚</div>
-      <div class="edu-title">Dayanand Anglo-Vedic College(D.A.V)</div>
-      <div class="edu-sub">+2 Science — Intermediate</div>
-      <div class="edu-gpa">📊 CGPA 3.16 / 4.0</div>
-      <div class="edu-loc">📍 Jawalakhel,Nepal</div>
-    </a>
+  <!-- SKILLS COMPONENT -->
+  <div id="skills-container"></div>
 
-    <a href="https://kec.edu.np/" target="_blank" class="edu-card reveal" style="transition-delay:.15s">
-      <div class="edu-icon">🎓</div>
-      <div class="edu-title">Kantipur Engineering College</div>
-      <div class="edu-sub">B.E. Computer Engineering — Ongoing</div>
-      <div class="edu-gpa">🎓 Bachelors (Ongoing)</div>
-      <div class="edu-loc">📍 Dhapakhel, Lalitpur</div>
-    </a>
+  <!-- DIVIDER -->
+  <div class="divider"><hr></div>
 
-  </div>
-</section>
+  <!-- CONTACT COMPONENT -->
+  <div id="contact-container"></div>
 
-<div class="divider"><hr></div>
+  <!-- DIVIDER -->
+  <div class="divider"><hr></div>
 
-<!-- PROJECTS -->
-<section class="section" id="projects">
-  <div class="section-header reveal">
-    <span class="section-tag">Work</span>
-    <h2 class="section-title">Projects</h2>
-  </div>
-  <div class="proj-grid">
+  <!-- FOOTER COMPONENT -->
+  <div id="footer-container"></div>
 
-    <!-- Voice Cloning Project -->
-    <div class="proj-card reveal">
-      <div class="proj-img-wrap">
-        <!-- Replace poster.jpg with your actual poster image file -->
-        <img src="poster.jpg" alt="Clone-The-Tone Voice Cloning" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-        <div class="proj-img-placeholder" style="display:none; width:100%; height:100%; align-items:center; justify-content:center; flex-direction:column; gap:8px;">
-          🎙️
-          <span style="font-size:0.75rem; color:var(--muted2); font-family:'DM Sans',sans-serif;">Upload your poster as poster.jpg</span>
-        </div>
-        <div class="proj-img-upload-note">project poster</div>
-      </div>
-      <div class="proj-body">
-        <div class="proj-tags">
-          <span class="proj-tag">AI / ML</span>
-          <span class="proj-tag">Speech</span>
-          <span class="proj-tag">Deep Learning</span>
-        </div>
-        <div class="proj-title">A neural approach to multi-speaker voice cloning in english using fastspeech2 with ecapa-tdnn speaker representations</div>
-        <div class="proj-desc">
-          A few-shot multi-speaker voice cloning system for the English language using FastSpeech 2 modeling and ECAPA-TDNN speaker embeddings — enabling high-quality speaker-specific speech synthesis from minimal data.
-        </div>
-        <ul class="proj-features">
-          <li>Few-shot voice cloning with just a few minutes of reference audio</li>
-          <li>Multi-speaker support using ECAPA-TDNN speaker embeddings</li>
-          <li>FastSpeech 2 non-autoregressive TTS for fast, parallel synthesis</li>
-          <li>HiFi-GAN vocoder for high-fidelity waveform reconstruction</li>
-          <li>Trained on SLR60(LibriTTS train-clean-100 and train-clean-360 subsets)</li>
-          <li>Audio preprocessing: denoising, normalization, mel-spectrogram extraction</li>
-        </ul>
-        <div class="proj-links">
-          <a href="https://github.com/r-curan/Voice_cloning_system_using_Fastspeech2-ECAPA-TDNN" target="_blank" class="proj-link proj-link-code">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.55-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.49 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
-            Code
-          </a>
-        </div>
-      </div>
-    </div>
+  <!-- Load Components -->
+  <script>
+    // Function to load HTML component
+    async function loadComponent(componentPath, containerId) {
+      try {
+        const response = await fetch(componentPath);
+        const html = await response.text();
+        document.getElementById(containerId).innerHTML = html;
+      } catch (error) {
+        console.error(`Error loading ${componentPath}:`, error);
+      }
+    }
 
-    <!-- Portfolio Project -->
-    <div class="proj-card reveal" style="transition-delay:.1s">
-      <div class="proj-img-wrap">
-  <img src="portfolio_poster.png" alt="Portfolio Website">
-</div>
-      <div class="proj-body">
-        <div class="proj-tags">
-          <span class="proj-tag">Web</span>
-          <span class="proj-tag">HTML/CSS/JS</span>
-        </div>
-        <div class="proj-title">Personal Portfolio Website</div>
-        <div class="proj-desc">
-          A clean, modern portfolio website showcasing projects, education, and skills — built from scratch with pure HTML, CSS, and JavaScript.
-        </div>
-        <div class="proj-links">
-          <a href="https://github.com/r-curan/r-curan.github.io" target="_blank" class="proj-link proj-link-code">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.55-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.49 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
-            Code
-          </a>
-        </div>
-      </div>
-    </div>
+    // Load all components
+    Promise.all([
+      loadComponent('components/header.html', 'header-container'),
+      loadComponent('components/hero.html', 'hero-container'),
+      loadComponent('components/education.html', 'education-container'),
+      loadComponent('components/projects.html', 'projects-container'),
+      loadComponent('components/skills.html', 'skills-container'),
+      loadComponent('components/contact.html', 'contact-container'),
+      loadComponent('components/footer.html', 'footer-container')
+    ]).then(() => {
+      // Initialize scripts after all components are loaded
+      initializeScripts();
+    });
 
-    <!-- Coming soon -->
-    <div class="proj-card proj-coming reveal" style="transition-delay:.2s">
-      <div class="proj-coming-icon" style="display:none"></div>
-      <div class="proj-title" style="font-size:1rem; color:var(--muted);">More Projects Coming</div>
-      <div class="proj-coming-text">Working on exciting new ideas...</div>
-    </div>
+    function initializeScripts() {
+      // Greeting
+      function setGreeting() {
+        const h = new Date().getHours();
+        let g = h < 12 ? "Good Morning! Welcome to my profile"
+              : h < 18 ? "Good Afternoon! Welcome to my profile"
+              : h < 21 ? "Good Evening! Welcome to my profile"
+              : "Good Night! Thanks for visiting";
+        document.getElementById("greetingBar").innerText = g;
+      }
+      setGreeting();
 
-  </div>
-</section>
+      // Scroll reveal - immediately show elements already in viewport
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+      }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
 
-<div class="divider"><hr></div>
+      document.querySelectorAll('.reveal').forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight) {
+          el.classList.add('visible');
+        } else {
+          observer.observe(el);
+        }
+      });
+    }
+  </script>
 
-<!-- CONTACT -->
-<section class="section" id="contact">
-  <div class="contact-wrap reveal">
-    <div class="section-tag" style="display:inline-block; margin-bottom:18px;">Get In Touch</div>
-    <div class="contact-title">Say Hello </div>
-    <div class="contact-sub">Want to talk, collaborate or just say hi? My inbox is always open.</div>
-    <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
-      <a href="/cdn-cgi/l/email-protection#6517040f0e0417040b16040d575251250208040c094b060a085a1610070f00061158350a1711030a090c0a45330c160c1143070a011c582d0009090a4537040f49452c45130c160c110001451c0a101745150a1711030a090c0a45040b014512040b1145110a45060a0b0b0006114b" class="btn btn-primary">Say Hello ✉️</a>
-      <a href="https://www.linkedin.com/in/raj-karan-sah-305442310/" target="_blank" class="btn btn-outline">LinkedIn</a>
-    </div>
-  </div>
-</section>
-
-<div class="divider"><hr></div>
-
-<!-- LAB (shifted to bottom) -->
-<section class="section" id="lab">
-  <div class="lab-wrap reveal">
-    <div class="lab-title">Login page</div>
-    <div class="lab-sub">Experiments, side projects & creative builds</div>
-    <a href="lab.html" class="btn btn-lab">
-      Enter the Lab →
-    </a>
-  </div>
-</section>
-
-<footer>
-  <p>© 2026 Raj Karan Sah ·9803359431</p>
-</footer>
-
-<script>
-// Greeting
-function setGreeting() {
-  const h = new Date().getHours();
-  let g = h < 12 ? "Good Morning! Welcome to my profile"
-        : h < 18 ? "Good Afternoon! Welcome to my profile"
-        : h < 21 ? "Good Evening! Welcome to my profile"
-        : "Good Night! Thanks for visiting";
-  document.getElementById("greetingBar").innerText = g;
-}
-setGreeting();
-
-// Scroll reveal - immediately show elements already in viewport
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
-
-document.querySelectorAll('.reveal').forEach(el => {
-  const rect = el.getBoundingClientRect();
-  if (rect.top < window.innerHeight) {
-    el.classList.add('visible');
-  } else {
-    observer.observe(el);
-  }
-});
-</script>
+</body>
+</html>
