@@ -1,84 +1,96 @@
 <!-- HERO -->
 <div class="hero" id="hero">
   <div class="hero-text reveal">
-    <p class="hero-greeting">
-     
-    </p>
+    <p class="hero-greeting"></p>
+
     <h1 class="hero-name">
       RAJ KARAN SAH
     </h1>
-    <p class="hero-greeting" style="color: var(--accent); margin-bottom: 20px; text-transform: none; letter-spacing: 0.01em; font-size: 0.95rem;">
-     
-    </p>
-    <p class="hero-desc">
-    </p>
+
+    <p class="hero-greeting" style="color: var(--accent); margin-bottom: 20px; text-transform: none; letter-spacing: 0.01em; font-size: 0.95rem;"></p>
+
+    <p class="hero-desc"></p>
+
     <div class="hero-buttons">
       <a href="https://github.com/r-curan" class="btn btn-primary" target="_blank">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.55-1.41-1.79-1.79-1.79-1.79-1.45-.99.11-.97.11-.97 1.61.11 2.46 1.65 2.46 1.65 1.43 2.44 3.74 1.74 4.66 1.33.15-1.04.56-1.74 1.02-2.14-3.56-.4-7.3-1.78-7.3-7.9 0-1.75.62-3.18 1.64-4.3-.17-.4-.72-2.06.15-4.3 0 0 1.33-.43 4.37 1.63 1.27-.35 2.63-.53 3.99-.54 1.35.01 2.72.19 4 .54 3.04-2.06 4.37-1.63 4.37-1.63.87 2.24.33 3.9.15 4.3 1.02 1.12 1.63 2.55 1.63 4.3 0 6.14-3.74 7.49-7.31 7.88.58.5 1.09 1.48 1.09 2.98v4.41c0 .42.23.73.82.6 4.77-1.59 8.21-6.08 8.21-11.39C24 5.37 18.63 0 12 0z"/></svg>
         GitHub
       </a>
-      <a href="https://www.linkedin.com" class="btn btn-outline" target="_blank">LinkedIn</a>
-      <a href="mailto:rajkaransah274@.com" class="btn btn-outline">Email</a>
+
+      <a href="https://www.linkedin.com" class="btn btn-outline" target="_blank">
+        LinkedIn
+      </a>
+
+      <a href="mailto:rajkaransah274@gmail.com" class="btn btn-outline">
+        Email
+      </a>
     </div>
+
     <div style="margin-top: 40px; display: flex; flex-direction: column; gap: 10px; font-size: 0.9rem; color: var(--muted);">
       <div style="display: flex; align-items: center; gap: 8px;">
         <span style="color: var(--accent);">📍</span> Dhapakhel, Lalitpur
       </div>
+
       <div style="display: flex; align-items: center; gap: 8px;">
         <span style="color: var(--accent);">📱</span> 9803359431
       </div>
+
       <div style="display: flex; align-items: center; gap: 8px;">
         <span style="color: var(--accent);">✉️</span> rajkaransah274@gmail.com
       </div>
     </div>
   </div>
 
+  <!-- IMAGE SIDE -->
   <div class="hero-image-side reveal" style="transition-delay:.15s">
     <div class="hero-img-wrap">
       <div class="hero-img-bg"></div>
       <div class="hero-img-bg2"></div>
-      <svg class="hero-img" viewBox="0 0 200 200" style="width: 240px; height: 280px; border: none; box-shadow: none;">
-        <!-- Circular Profile Image -->
-<defs>
-  <filter id="glow">
-    <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
-    <feMerge>
-      <feMergeNode in="coloredBlur"/>
-      <feMergeNode in="SourceGraphic"/>
-    </feMerge>
-  </filter>
-</defs>
 
-<!-- Outer Glow Ring -->
-<circle 
-  cx="100" 
-  cy="100" 
-  r="78" 
-  fill="none" 
-  stroke="#06b6d4" 
-  stroke-width="3"
-  opacity="0.7"
-  filter="url(#glow)"
-/>
+      <svg class="hero-img" viewBox="0 0 200 200" style="width: 240px; height: 240px; border: none; box-shadow: none;">
 
-<!-- Circular Image -->
-<clipPath id="profileClip">
-  <circle cx="100" cy="100" r="70"/>
-</clipPath>
+        <defs>
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+            <feMerge>
+              <feMergeNode in="coloredBlur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+        </defs>
 
-<image 
-  href="profile.jpg"
-  x="30"
-  y="30"
-  width="140"
-  height="140"
-  clip-path="url(#profileClip)"
-  preserveAspectRatio="xMidYMid slice"
-/>
+        <!-- Outer Glow Ring -->
+        <circle 
+          cx="100" 
+          cy="100" 
+          r="78" 
+          fill="none" 
+          stroke="#06b6d4" 
+          stroke-width="3"
+          opacity="0.7"
+          filter="url(#glow)"
+        />
+
+        <!-- Circular Image -->
+        <clipPath id="profileClip">
+          <circle cx="100" cy="100" r="70"/>
+        </clipPath>
+
+        <image 
+          href="image.png"
+          x="30"
+          y="30"
+          width="140"
+          height="140"
+          clip-path="url(#profileClip)"
+          preserveAspectRatio="xMidYMid slice"
+        />
+
         <!-- Center accent -->
-        <circle cx="100" cy="95" r="8" fill="#06b6d4" opacity="0.6"/>
-        <circle cx="100" cy="95" r="5" fill="#06b6d4" opacity="0.9"/>
+        <circle cx="100" cy="100" r="8" fill="#06b6d4" opacity="0.6"/>
+        <circle cx="100" cy="100" r="5" fill="#06b6d4" opacity="0.9"/>
+
       </svg>
+
       <div class="hero-badge">
         <span class="dot"></span>
         Available for collaboration
