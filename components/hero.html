@@ -38,27 +38,43 @@
       <div class="hero-img-bg"></div>
       <div class="hero-img-bg2"></div>
       <svg class="hero-img" viewBox="0 0 200 200" style="width: 240px; height: 280px; border: none; box-shadow: none;">
-        <!-- Shield Icon with Glow -->
-        <defs>
-          <filter id="glow">
-            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-            <feMerge>
-              <feMergeNode in="coloredBlur"/>
-              <feMergeNode in="SourceGraphic"/>
-            </feMerge>
-          </filter>
-          <radialGradient id="shieldGrad" cx="50%" cy="30%">
-            <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:0.3" />
-            <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:0" />
-          </radialGradient>
-        </defs>
-        <!-- Outer glow -->
-        <circle cx="100" cy="100" r="95" fill="none" stroke="#06b6d4" stroke-width="1" opacity="0.3"/>
-        <!-- Shield -->
-        <path d="M 100 30 L 150 60 L 150 120 Q 100 160 100 160 Q 100 160 50 120 L 50 60 Z" 
-              fill="none" stroke="#06b6d4" stroke-width="3" filter="url(#glow)" opacity="0.9"/>
-        <path d="M 100 30 L 150 60 L 150 120 Q 100 160 100 160 Q 100 160 50 120 L 50 60 Z" 
-              fill="url(#shieldGrad)" stroke="#06b6d4" stroke-width="2.5"/>
+        <!-- Circular Profile Image -->
+<defs>
+  <filter id="glow">
+    <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+    <feMerge>
+      <feMergeNode in="coloredBlur"/>
+      <feMergeNode in="SourceGraphic"/>
+    </feMerge>
+  </filter>
+</defs>
+
+<!-- Outer Glow Ring -->
+<circle 
+  cx="100" 
+  cy="100" 
+  r="78" 
+  fill="none" 
+  stroke="#06b6d4" 
+  stroke-width="3"
+  opacity="0.7"
+  filter="url(#glow)"
+/>
+
+<!-- Circular Image -->
+<clipPath id="profileClip">
+  <circle cx="100" cy="100" r="70"/>
+</clipPath>
+
+<image 
+  href="profile.jpg"
+  x="30"
+  y="30"
+  width="140"
+  height="140"
+  clip-path="url(#profileClip)"
+  preserveAspectRatio="xMidYMid slice"
+/>
         <!-- Center accent -->
         <circle cx="100" cy="95" r="8" fill="#06b6d4" opacity="0.6"/>
         <circle cx="100" cy="95" r="5" fill="#06b6d4" opacity="0.9"/>
